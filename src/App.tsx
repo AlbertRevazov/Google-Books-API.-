@@ -1,5 +1,7 @@
+import { Main } from './components/Main'
+
 export const App = () => {
-	return <div className='App'>Learn React</div>
+	return <Main />
 }
 
 export default App
