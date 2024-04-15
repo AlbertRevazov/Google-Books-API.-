@@ -1,7 +1,7 @@
 export type Books = {
 	kind: string
 	totalItems: number
-	items: []
+	items: Items[]
 }
 
 export type Items = {
@@ -31,6 +31,7 @@ export type VolumeInfo = {
 	infoLink: string
 	canonicalVolumeLink: string
 	authors: string[]
+	categories: string[]
 	imageLinks: {
 		smallThumbnail: string
 		thumbnail: string

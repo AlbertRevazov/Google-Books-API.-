@@ -1,14 +1,43 @@
-.main_root {
-	background-color: red;
-	min-height: 300px;
-	max-width: 1057px;
-	margin: 0 auto;
+.container {
+	max-width: 1257px;
+	margin: 50px auto;
+
+	h1 {
+		position: relative;
+		z-index: 1;
+		color: #fff;
+		font-size: 32px;
+		margin: 12px auto;
+	}
 }
-.input {
-	border: 1px solid yellow;
-}
+
 .btn {
-	margin: 12px;
-	padding: 8px;
-	background-color: purple;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 12px auto;
+	padding: 10px 42px;
+	color: #fff;
+	font-size: 24px;
+	text-transform: capitalize;
+	background-color: #1b1b56b5;
+	transition: background-color 0.3s ease-in;
+	cursor: pointer;
+	position: relative;
+	z-index: 92;
+
+	&:hover {
+		background-color: #1717b0db;
+	}
 }
+
+.not_found {
+	font-size: 32px;
+	text-align: center;
+
+	span {
+		color: #0b0be9b5;
+		text-shadow: 1px 1px 20px red;
+	}
+}
+

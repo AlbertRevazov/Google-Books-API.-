@@ -78,3 +78,9 @@ meter {
 :where(dialog:modal) {
 	all: revert;
 }
+
+@mixin visible-animate($name, $duration) {
+	animation-delay: 0s;
+	animation-name: $name;
+	animation-duration: $duration;
+}

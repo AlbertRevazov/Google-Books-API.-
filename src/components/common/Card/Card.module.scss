@@ -1,0 +1,69 @@
+@import '../../../reset';
+
+.card_root {
+	height: 380px;
+	margin: 6px 12px;
+	padding: 20px;
+	width: calc(80% - 40px);
+	background-color: #1b1b56b5;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	transition: all 1s;
+
+	@include visible-animate(listVisible, 3s);
+	@media (min-width: 449px) {
+		width: 235px;
+	}
+}
+
+.card_img {
+	margin: 6px auto;
+	min-height: 190px;
+}
+
+.card_img img {
+	height: 190px;
+	border-radius: 2px;
+	box-shadow: 12px 12px 25px #000000a5;
+}
+
+.category {
+	padding: 6px 0;
+	color: darksalmon;
+	text-decoration: underline;
+	text-transform: capitalize;
+	font-size: 16px;
+}
+
+.title {
+	max-width: 180px;
+	padding: 6px 0;
+	margin: 0 auto;
+	font-size: 18px;
+	letter-spacing: 0.5px;
+	white-space: nowrap;
+	color: #fff;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.author {
+	padding: 6px 0;
+	margin: 0 auto;
+	max-height: 30px;
+	overflow: hidden;
+	color: darksalmon;
+	text-transform: capitalize;
+}
+
+@keyframes listVisible {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

@@ -1,0 +1,32 @@
+@import '../../../../reset';
+
+.container {
+	text-align: center;
+}
+.total {
+	padding: 24px 0;
+	font-size: 34px;
+	letter-spacing: 2px;
+	@include visible-animate(listVisible, 1.5s);
+
+	span {
+		font-family: Helvetica;
+		color: #3e3eeea2;
+	}
+}
+
+.card_wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+@keyframes listVisible {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

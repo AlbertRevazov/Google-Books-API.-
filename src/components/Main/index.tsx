@@ -1,61 +1,36 @@
-import { ChangeEventHandler, useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { getSearchBooks } from '../../redux/features/Books'
+import { FC } from 'react'
+import { useBooksHook } from './hooks'
+import { Form } from './sections/Form'
+import { List } from './sections/List'
+import { Loader } from '../common/Loader'
+
 import styles from './Main.module.scss'
-import { Books, Items } from './BooksTypes'
 
-export const Main = () => {
-	const [data, setData] = useState<Books | null>(null)
-	const [keyword, setKeyword] = useState<string>('')
-	const [category, setCategories] = useState<string>('all')
-	const [order, setOrder] = useState<'relevance' | 'newest'>('relevance')
-	const dispatch = useAppDispatch()
-	const { books } = useAppSelector(s => s.books)
-
-	useEffect(() => {}, [books])
-
-	// if (!books) return <h2>loading</h2>
-	const handle = () => {
-		dispatch(getSearchBooks({ keyword, category, order }))
-	}
+export const Main: FC = () => {
+	const { books, page, isFetched, pageCount, isLoading, moreFetch } =
+		useBooksHook()
 	return (
-		<div className={styles.main_root}>
-			Main
-			<input
-				type='text'
-				value={keyword}
-				onChange={e => setKeyword(e.currentTarget.value)}
-				className={styles.input}
-			/>
-			<button type='button' onClick={handle}>
-				find
-			</button>
-			<select
-				className={styles.btn}
-				onChange={e => setCategories(e.currentTarget.value)}
-			>
-				<option value='all'>all</option>
-				<option value='art'>art</option>
-				<option value='biography'>biography</option>
-				<option value='computers'>computers</option>
-				<option value='history'>history</option>
-				<option value='medical'>medical</option>
-				<option value='poetry'>poetry</option>
-			</select>
-			<select
-				className={styles.btn}
-				onChange={e =>
-					setOrder(e.currentTarget.value as 'newest' | 'relevance')
-				}
-			>
-				<option value='relevance'>relevance</option>
-				<option value='newest'>newest</option>
-			</select>
-			<div>
-				{books?.items?.map((book: Items) => (
-					<h1>{book.volumeInfo.title}</h1>
-				))}
-			</div>
+		<div className={styles.container}>
+			<Form />
+
+			{!!books.totalItems && <List list={books} />}
+
+			{isFetched && !books.totalItems && (
+				<p className={styles.not_found}>
+					Not Found <span>Books</span>, try another word
+				</p>
+			)}
+
+			{isLoading ? (
+				<Loader />
+			) : (
+				page < pageCount &&
+				!isLoading && (
+					<button className={styles.btn} onClick={moreFetch}>
+						more
+					</button>
+				)
+			)}
 		</div>
 	)
 }
